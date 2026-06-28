@@ -1,0 +1,6 @@
+export { parseEnv } from './parser.js'
+export { compare } from './compare.js'
+export type { DiffResult } from './compare.js'
+export { formatTerminal, formatJson } from './format.js'
+export { run } from './cli.js'
+export type { RunOptions, RunResult } from './cli.js'
