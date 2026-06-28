@@ -1,11 +1,11 @@
-# env-diff
+# @helix_dev/env-diff
 
 Compare `.env` files — report missing keys, extra keys, and empty values. Useful as a CI/CD pre-deploy check.
 
 ## Install
 
 ```bash
-npm install --save-dev env-diff
+npm install --save-dev @helix_dev/env-diff
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ env-diff --quiet
 ## Programmatic API
 
 ```ts
-import { compare } from 'env-diff'
+import { compare } from '@helix_dev/env-diff'
 
 const result = compare(
   { DATABASE_URL: 'postgres://...' },
