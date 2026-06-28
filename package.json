@@ -1,0 +1,31 @@
+{
+  "name": "env-diff",
+  "version": "0.1.0",
+  "description": "Compare .env files — report missing keys, extra keys, and empty values",
+  "type": "module",
+  "bin": {
+    "env-diff": "bin/env-diff.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "bin"],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "typescript": "~5.4.0",
+    "@types/node": "^20.0.0",
+    "vitest": "^1.6.0"
+  },
+  "license": "MIT"
+}
