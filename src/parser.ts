@@ -1,4 +1,6 @@
-export function parseEnv(content: string): Record<string, string | undefined> {
+export type EnvMap = Record<string, string | undefined>
+
+export function parseEnv(content: string): EnvMap {
   const result: Record<string, string | undefined> = {}
   const lines = content.split('\n')
   for (const rawLine of lines) {

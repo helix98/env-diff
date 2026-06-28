@@ -24,8 +24,14 @@ export function run(examplePath: string, envPath: string, options: RunOptions = 
     return { exitCode: 2, output: `Error: File not found — ${envPath}` }
   }
 
-  const exampleContent = readFileSync(examplePath, 'utf-8')
-  const envContent = readFileSync(envPath, 'utf-8')
+  let exampleContent: string, envContent: string
+  try {
+    exampleContent = readFileSync(examplePath, 'utf-8')
+    envContent = readFileSync(envPath, 'utf-8')
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    return { exitCode: 2, output: options.quiet ? '' : `Error: Failed to read file — ${msg}` }
+  }
 
   const example = parseEnv(exampleContent)
   const env = parseEnv(envContent)
@@ -81,7 +87,8 @@ export function main(args: string[]): void {
   const result = run(examplePath, envPath, { json, quiet })
 
   if (result.output) {
-    process.stdout.write(result.output + '\n')
+    const dest = result.exitCode === 2 ? process.stderr : process.stdout
+    dest.write(result.output + '\n')
   }
 
   process.exit(result.exitCode)
